@@ -5,7 +5,7 @@ const viewEngineSetup = (app) => {
         extname: 'hbs'
     }));
     app.set('view engine', 'hbs');
-    app.set('views', './views');
+    app.set('views', './src/views');
 };
 
 module.exports = viewEngineSetup;
