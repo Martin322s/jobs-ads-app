@@ -16,4 +16,8 @@ router.get('/edit', (req, res) => {
     res.render('jobs/edit');
 });
 
+router.get('/search', (req, res) => {
+    res.render('search');
+});
+
 module.exports = router;
