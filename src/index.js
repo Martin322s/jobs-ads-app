@@ -1,14 +1,14 @@
 const express = require('express');
 const databaseConnection = require('../config/database');
 const viewEngineSetup = require('../config/handlebars');
+const cookieParser = require('cookie-parser');
+const router = require('./router');
 const app = express();
 const port = 3000;
 
 viewEngineSetup(app);
-
-app.get('/', (req, res) => {
-    res.send('Hello world!');
-});
+app.use(cookieParser());
+app.use(router);
 
 databaseConnection()
     .then(() => {
