@@ -10,6 +10,10 @@ router.get('/create-offer', (req, res) => {
 
 router.get('/details', (req, res) => {
     res.render('jobs/details');
-})
+});
+
+router.get('/edit', (req, res) => {
+    res.render('jobs/edit');
+});
 
 module.exports = router;
