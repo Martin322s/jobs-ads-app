@@ -1,7 +1,10 @@
 const express = require('express');
 const databaseConnection = require('../config/database');
+const viewEngineSetup = require('../config/handlebars');
 const app = express();
 const port = 3000;
+
+viewEngineSetup(app);
 
 app.get('/', (req, res) => {
     res.send('Hello world!');
