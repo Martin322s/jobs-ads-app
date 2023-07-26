@@ -7,4 +7,8 @@ router.get('/', (req, res) => {
 
 router.use('/auth', authController);
 
+router.get('*', (req, res) => {
+    res.render('404');
+});
+
 module.exports = router;
