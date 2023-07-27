@@ -28,3 +28,21 @@ exports.generateToken = async (user) => {
     const token = await jwtSign(payload, SECRET, options);
     return token;
 };
+
+exports.loginUser = async (userData) => {
+    const user = await User.findOne({ email: userData.email });
+
+    try {
+        if (user) {
+            const isValidUser = await bcrypt.compare(userData.password, user.password);
+
+            if (isValidUser) {
+                return user;
+            } else {
+                throw { message: 'Invalid password provided!' };
+            }
+        }
+    } catch (err) {
+        return err;
+    }
+};

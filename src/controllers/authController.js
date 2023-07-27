@@ -38,6 +38,27 @@ router.get('/login', (req, res) => {
     res.render('auth/login');
 });
 
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        if (email !== '' && password !== '') {
+            const user = await authService.loginUser({ email, password });
+            if (typeof user === 'object' && !user.message) {
+                const token = await authService.generateToken(user);
+                res.cookie('session', token);
+                res.redirect('/');
+            } else {
+                throw user;
+            }
+        } else {
+            throw { message: 'All fields must be filled correctly!' }
+        }
+    } catch (err) {
+        res.status(400).render('auth/login', { error: err.message });
+    }
+});
+
 router.get('/logout', (req, res) => {
     if (req.headers['cookie']) {
         res.clearCookie('session');
