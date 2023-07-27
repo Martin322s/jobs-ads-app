@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
             if (password === rePassword) {
                 const user = await authService.registerUser({ email, password, description });
 
-                if (typeof user === object) {
+                if (typeof user === 'object') {
                     const token = await authService.generateToken(user);
                     res.cookie('session', token);
                     res.status(200).redirect('/');
@@ -30,7 +30,7 @@ router.post('/register', async (req, res) => {
             }
         }
     } catch (err) {
-        res.status(400).render('auth/register', { error: err });
+        res.status(400).render('auth/register', { error: err.message });
     }
 });
 

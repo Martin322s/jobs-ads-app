@@ -18,13 +18,13 @@ exports.registerUser = async (userData) => {
             throw { message: 'User with this email already exsists!' }
         }
     } catch (err) {
-        return err;
+        return err.message;
     }
 };
 
 exports.generateToken = async (user) => {
     const payload = { _id: user._id, email: user.email };
-    const options = { expiresIn: '2h', algorithm: 'RS256' };
+    const options = { expiresIn: '2h' };
     const token = await jwtSign(payload, SECRET, options);
     return token;
 };
