@@ -30,8 +30,19 @@ router.post('/create-offer', async (req, res) => {
     }
 });
 
-router.get('/details', (req, res) => {
-    res.render('jobs/details');
+router.get('/details/:adId', async (req, res) => {
+    const adId = req.params.adId;
+    const detailedAd = await jobsService.getOneAd(adId);
+    console.log(detailedAd._ownerId._id, req.user);
+    res.render('jobs/details', {
+        isOwner: detailedAd._ownerId._id === req.user,
+        email: detailedAd._ownerId.email,
+        _id: detailedAd._id,
+        headline: detailedAd.headline,
+        location: detailedAd.location,
+        companyName: detailedAd.companyName,
+        companyDescription: detailedAd.companyDescription
+    });
 });
 
 router.get('/edit', (req, res) => {
