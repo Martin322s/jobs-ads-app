@@ -39,7 +39,10 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    res.send('Unauthorized');
+    if (req.headers['cookie']) {
+        res.clearCookie('session');
+        res.redirect('/');
+    }
 });
 
 module.exports = router;
