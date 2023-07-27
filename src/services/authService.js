@@ -46,3 +46,9 @@ exports.loginUser = async (userData) => {
         return err;
     }
 };
+
+exports.addNewAdd = async (userId, adId) =>
+    await User.findByIdAndUpdate(
+        { _id: userId },
+        { $push: { myAds: adId } }
+    );
