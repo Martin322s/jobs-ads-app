@@ -2,7 +2,7 @@
     <article class="home-page-content">
         <h1>Find The Job That Fits Your Life</h1>
         <p>On this site, you can find hundreds of job offers, do not hesitate, and apply now.</p>
-        <a href="#" class="view-all-ads">View all ads</a>
+        <a href="/jobs/catalog" class="view-all-ads">View all ads</a>
     </article>
     <article class="home-page-image">
         <img src="/static/img/man.png" alt="man">
@@ -25,37 +25,18 @@
     </article>
 
     <article class="intro-right-side">
-        <!--If there are job ads in the database, show them (max 3)-->
+        {{#if lastThree}}
+        {{#each lastThree}}
         <article class="intro-right-side-content">
             <img src="/static/img/technology.png" alt="technology">
             <h5>
-                <!--Put the value of the headline below-->
-                Front End Developer
-                <!--Put the value of the total number of candidates below-->
-                <span>Candidates: 2</span>
+                {{headline}}
+                <span>Candidates: {{candidates}}</span>
             </h5>
         </article>
-
-        <article class="intro-right-side-content">
-            <img src="/static/img/technology.png" alt="technology">
-            <h5>
-                <!--Put the value of the headline below-->
-                Teacher
-                <!--Put the value of the total number of candidates below-->
-                <span>Candidates: 1</span>
-            </h5>
-        </article>
-
-        <article class="intro-right-side-content">
-            <img src="/static/img/technology.png" alt="technology">
-            <h5>
-                <!--Put the value of the headline below-->
-                Mathematician
-                <!--Put the value of the total number of candidates below-->
-                <span>Candidates: 0</span>
-            </h5>
-        </article>
-
-        {{!-- <p class="no-ads-created">No ads created!</p> --}}
+        {{/each}}
+        {{else}}
+        <p class="no-ads-created">No ads created!</p>
+        {{/if}}
     </article>
 </section>
