@@ -10,9 +10,11 @@
 <body>
 
     <div class="box">
-        <!--<div class="error-box">
-            <p>Error</p>
-        </div>-->
+        {{#if error}}
+        <div class="error-box">
+            <p>{{error}}</p>
+        </div>
+        {{/if}}
 
         <header class="header">
             <article class="header-logo">
