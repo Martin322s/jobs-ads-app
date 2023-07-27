@@ -33,15 +33,23 @@ router.post('/create-offer', async (req, res) => {
 router.get('/details/:adId', async (req, res) => {
     const adId = req.params.adId;
     const detailedAd = await jobsService.getOneAd(adId);
-    console.log(detailedAd._ownerId._id, req.user);
+    const appliedUsers = detailedAd.appliedUsers.map(x => (
+        { _id: x._id, email: x.email, description: x.description }
+    ));
+    const isApplied = appliedUsers
+        .findIndex(x => x._id.toString() === req.user) !== -1 ? true : false;
+
     res.render('jobs/details', {
-        isOwner: detailedAd._ownerId._id === req.user,
+        isOwner: detailedAd._ownerId._id.toString() === req.user,
         email: detailedAd._ownerId.email,
         _id: detailedAd._id,
         headline: detailedAd.headline,
         location: detailedAd.location,
         companyName: detailedAd.companyName,
-        companyDescription: detailedAd.companyDescription
+        companyDescription: detailedAd.companyDescription,
+        appliedUsers: appliedUsers,
+        countOfAppliedUsers: appliedUsers.length,
+        isApplied: isApplied
     });
 });
 
@@ -49,8 +57,19 @@ router.get('/edit', (req, res) => {
     res.render('jobs/edit');
 });
 
+router.get('/delete/:adId', (req, res) => {
+    console.log('deleted');
+});
+
 router.get('/search', (req, res) => {
     res.render('search');
+});
+
+router.get('/apply/:adId', async (req, res) => {
+    const adId = req.params.adId;
+    const userId = req.user;
+    await jobsService.applyForJob(adId, userId);
+    res.redirect(`/jobs/details/${adId}`);
 });
 
 module.exports = router;
