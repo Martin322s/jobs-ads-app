@@ -7,14 +7,15 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
     const { email, password, rePassword, description } = req.body;
-
     try {
         if (!Object.values(req.body).some(x => x === '')) {
             if (password === rePassword) {
                 const user = await authService.registerUser({ email, password, description });
 
                 if (typeof user === object) {
-                    
+                    const token = await authService.generateToken(user);
+                    res.cookie('session', token);
+                    res.status(200).redirect('/');
                 } else {
                     res.status(400).render('auth/register', { error: user });
                 }
