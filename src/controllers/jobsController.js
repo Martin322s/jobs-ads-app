@@ -57,8 +57,14 @@ router.get('/edit', (req, res) => {
     res.render('jobs/edit');
 });
 
-router.get('/delete/:adId', (req, res) => {
-    console.log('deleted');
+router.get('/delete/:adId', async (req, res) => {
+    const ad = await jobsService.getOneAd(req.params.adId);
+    const user = await jobsService.getUser(req.user);
+    const newAds = user.myAds.filter(x => x.toString() !== req.params.adId);
+    user.myAds = newAds;
+    await jobsService.deleteAd(req.params.adId);
+    await jobsService.updateUser(user._id, user);
+    res.redirect('/jobs/catalog');
 });
 
 router.get('/search', (req, res) => {

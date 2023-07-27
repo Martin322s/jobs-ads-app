@@ -1,4 +1,5 @@
 const Ad = require('../models/Ad');
+const User = require('../models/User');
 
 exports.createAd = async (adData) => await Ad.create(adData);
 exports.getAllAds = async () => await Ad.find().lean();
@@ -8,3 +9,7 @@ exports.applyForJob = async (adId, userId) =>
         { _id: adId },
         { $push: { appliedUsers: userId } }
     );
+
+exports.deleteAd = async (adId) => await Ad.findByIdAndDelete({ _id: adId });
+exports.getUser = async (userId) => await User.findById({ _id: userId });
+exports.updateUser = async (userId, userData) => await User.findByIdAndUpdate(userId, userData);
