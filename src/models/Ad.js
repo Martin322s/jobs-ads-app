@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const adSchema = new mongoose.Schema({
-    headeline: {
+    headline: {
         type: String,
         required: true
     },

@@ -3,47 +3,32 @@
         <h1>All ads</h1>
     </article>
 
-    <!--If there are job ads in the database, show each one-->
-    <article class="all-ads-card">
-        <article class="all-ads-card-image">
-            <img src="/static/img/job-icon1.png" alt="job-icon">
-        </article>
-
-        <article class="all-ads-card-content">
-            <h2>UI / UX Designers</h2>
-            <h3>Company Name: Digital Solutions</h3>
-            <article class="all-ads-card-content-item">
-                <img src="/static/img/map-icon.png">
-                <p>Location 210-27 Sofia, Market Street, Bulgaria</p>
+    {{#if all}}
+        {{#each all}}
+        <article class="all-ads-card">
+            <article class="all-ads-card-image">
+                <img src="/static/img/job-icon1.png" alt="job-icon">
             </article>
-        </article>
 
-        <article class="all-ads-card-buttons">
-            <a href="/jobs/details" class="btn-details">Details</a>
-        </article>
-    </article>
-
-    <article class="all-ads-card">
-        <article class="all-ads-card-image">
-            <img src="/static/img/job-icon1.png" alt="job-icon">
-        </article>
-
-        <article class="all-ads-card-content">
-            <h2>Front-End Developer</h2>
-            <h3>Company Name:search-page-no-result-message</h3>
-            <article class="all-ads-card-content-item">
-                <img src="/static/img/map-icon.png">
-                <p>Location Ruse, Market Street, Bulgaria</p>
+            <article class="all-ads-card-content">
+                <h2>{{headline}}</h2>
+                <h3>Company Name: {{companyName}}</h3>
+                <article class="all-ads-card-content-item">
+                    <img src="/static/img/map-icon.png">
+                    <p>Location {{location}}</p>
+                </article>
             </article>
+            {{#if isLoggedIn}}
+            <article class="all-ads-card-buttons">
+                <a href="/jobs/details" class="btn-details">Details</a>
+            </article>
+            {{/if}}
         </article>
-        <article class="all-ads-card-buttons">
-            <a href="/jobs/details" class="btn-details">Details</a>
+        {{/each}}
+    {{else}}
+        <article class="not-available-ads">
+            <h1>No ads created yet.</h1>
+            <h2>Join and find your perfect workers.</h2>
         </article>
-    </article>
-
-    <!--If there are still no job ads in the database display:-->
-    {{!-- <article class="not-available-ads">
-        <h1>No ads created yet.</h1>
-        <h2>Join and find your perfect workers.</h2>
-    </article> --}}
+    {{/if}}
 </section>
