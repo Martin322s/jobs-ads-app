@@ -83,6 +83,17 @@ router.get('/search', (req, res) => {
     res.render('search');
 });
 
+router.post('/search', async (req, res) => {
+    const user = await jobsService.getUserByEmail(req.body.search);
+    const allAds = await jobsService.getAllAds();
+    const searchedAds = allAds.filter(x => x._ownerId.toString() === user?._id.toString()).map(x => ({
+        headline: x.headline,
+        companyName: x.companyName
+    }));
+    
+    res.render('search', { searchedAds, searchedEmail: user?.email });
+});
+
 router.get('/apply/:adId', isAuth, async (req, res) => {
     const adId = req.params.adId;
     const userId = req.user;

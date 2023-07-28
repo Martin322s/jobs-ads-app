@@ -14,3 +14,5 @@ exports.deleteAd = async (adId) => await Ad.findByIdAndDelete({ _id: adId });
 exports.getUser = async (userId) => await User.findById({ _id: userId });
 exports.updateUser = async (userId, userData) => await User.findByIdAndUpdate(userId, userData);
 exports.updateAd = async (adId, data) => await Ad.findByIdAndUpdate(adId, data);
+exports.getUserByEmail = async (email) => await User.findOne({ email: email });
+exports.searchAds = async (email) => await User.find({ email: email }).populate('myAds');

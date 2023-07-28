@@ -1,5 +1,5 @@
-<form class="search" action="" method="">
-    <input type="search" name="" value="" placeholder="Search email...">
+<form class="search" method="POST">
+    <input type="search" name="search" placeholder="Search email..." value="{{searchedEmail}}">
     <button type="submit" class="btn-search">
         <img src="/static/img/search-icon.png" alt="search-icon">
         Search
@@ -7,20 +7,18 @@
 </form>
 
 <section id="search-page">
-
     <h2>Search result:</h2>
-    <!--If there are a search matches, show each ad-->
+    {{#if searchedAds}}
+    {{#each searchedAds}}
     <article class="search-page-result">
-        <p class="search-page-result-headline">Headline: Frond End Developer</p>
-        <p class="search-page-result-companyName">Company Name: WebCam</p>
+        <p class="search-page-result-headline">Headline: {{headline}}</p>
+        <p class="search-page-result-companyName">Company Name: {{companyName}}</p>
     </article>
-
-    <article class="search-page-result">
-        <p class="search-page-result-headline">Headline: UI / UX Designers</p>
-        <p class="search-page-result-companyName">Company Name: Digital Solutions</p>
-    </article>
-    <!--If not show:-->
-    <article class="search-page-no-result">
+    {{/each}}
+    {{/if}}
+    {{#unless searchedAds}}
+     <article class="search-page-no-result">
         <p class="search-page-no-result-message">No jobs found.</p>
     </article>
+    {{/unless}}
 </section>
