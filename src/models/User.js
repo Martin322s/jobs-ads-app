@@ -3,15 +3,23 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: function () {
+                const regex = /^[A-Za-z]+@[A-Za-z]+\.[A-Za-z]+$/gm;
+                return regex.test(this.email);
+            }
+        }
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minLength: 5
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 40
     },
     myAds: [{
         type: mongoose.Types.ObjectId,
