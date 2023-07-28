@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const jobsService = require('../services/jobsService');
 const authService = require('../services/authService');
+const { isAuth } = require('../middlewares/authMiddleware');
 
 router.get('/catalog', async (req, res) => {
     const all = await jobsService.getAllAds();
@@ -9,11 +10,11 @@ router.get('/catalog', async (req, res) => {
     res.render('jobs/catalog', { all, isLoggedIn });
 });
 
-router.get('/create-offer', (req, res) => {
+router.get('/create-offer', isAuth, (req, res) => {
     res.render('jobs/create');
 });
 
-router.post('/create-offer', async (req, res) => {
+router.post('/create-offer', isAuth, async (req, res) => {
     const userId = req.user;
     const adData = req.body
 
@@ -53,11 +54,22 @@ router.get('/details/:adId', async (req, res) => {
     });
 });
 
-router.get('/edit', (req, res) => {
-    res.render('jobs/edit');
+router.get('/edit/:adId', isAuth, async (req, res) => {
+    const ad = await jobsService.getOneAd(req.params.adId);
+    res.render('jobs/edit', {
+        headline: ad.headline,
+        location: ad.location,
+        companyName: ad.companyName,
+        companyDescription: ad.companyDescription
+    });
 });
 
-router.get('/delete/:adId', async (req, res) => {
+router.post('/edit/:adId', isAuth, async (req, res) => {
+    await jobsService.updateAd(req.params.adId, req.body);
+    res.redirect(`/jobs/details/${req.params.adId}`);
+});
+
+router.get('/delete/:adId', isAuth, async (req, res) => {
     const ad = await jobsService.getOneAd(req.params.adId);
     const user = await jobsService.getUser(req.user);
     const newAds = user.myAds.filter(x => x.toString() !== req.params.adId);
@@ -71,7 +83,7 @@ router.get('/search', (req, res) => {
     res.render('search');
 });
 
-router.get('/apply/:adId', async (req, res) => {
+router.get('/apply/:adId', isAuth, async (req, res) => {
     const adId = req.params.adId;
     const userId = req.user;
     await jobsService.applyForJob(adId, userId);
