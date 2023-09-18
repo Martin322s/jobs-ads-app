@@ -53,3 +53,15 @@ Note: When a user applies for an ad, their id is added to this collection (Users
 Show the first three added job ads. Each ad must show information about the headline, and the total number of candidates.
 
 If there are still no job ads, display "No ads created!"
+
+### Register Page (logged out user)
+
+Register a user inside the database with email, password, and description of skills. Password inside the database must be hashed (use bcrypt) and both passwords must match! After successful registration, redirect to the Home page as an already logged-in user.
+
+### Login Page (logged out user)
+
+Logging an already registered user with the correct email and password. After successful login, redirect to the Home page as an already logged-in user.
+
+### Logout (logged in user)
+
+The logout action is available to logged-in users. Upon success, clear any session information and redirect the user to the Home page.
