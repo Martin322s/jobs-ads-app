@@ -103,3 +103,19 @@ Information about the ad:
 - Company description
 - Location
 - Buttons (Depending on the status of the currently logged in user)
+
+### Details Page (logged out users)
+
+If the user has not logged in, no buttons should be displayed.
+
+### Details Page (logged in user and author of the current ad)
+
+If the currently logged-in user is the author (the user who created the job ad), he should see the [Edit] and [Delete] buttons. Also, only the author has the right to see the information about all candidates (those who have applied for a current ad). For each candidate, show their email and description of their skills. If there is no candidats, you don't need to visualize anything further.
+
+### Details Page (logged in user who did not apply for a current ad)
+
+If the currently logged-in user is not the author (the user that is not the creator) and has not applied for this ad, he should see the [Apply now!] button and paragraph [Hurry up, {total number of candidates} people have already applied.].
+
+### Details Page (logged in and has already applied for a current ad)
+
+If the currently logged-in user is not the author and has already applied for a current ad, he should see the paragraph [You have already applied!].
