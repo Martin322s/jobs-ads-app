@@ -187,3 +187,11 @@ You should make the following validations while creating and editing ad:
 - The Location should be a minimum of 8 characters long
 - The Company name should be at least 3 characters
 - The Company description should be a maximum of 40 characters long
+
+- ## Bonus - Search
+
+Search by email. Filter all ads where the author's email matches a search string (regardless of uppercase).
+
+After clicking on the [Search] button, if there are matches from the search, display each matching ad. Each ad should display information about the headline, the company name.
+
+If there are no search matches, display: No match found.
