@@ -84,3 +84,22 @@ Logging an already registered user with the correct email and password. After su
 ### Logout (logged in user)
 
 The logout action is available to logged-in users. Upon success, clear any session information and redirect the user to the Home page.
+
+### All ads (for logged in users and logged out users)
+
+List of all job ads. Each ad should display information about the headline, the company name, the location, as well as the [Details] button that leads to the details page for the specific ad.
+
+If there are no job ads in the database, display the following view:
+
+### Details Page - (for logged in users)
+
+All users should be able to view details about the ad. Clicking the Details button on the ad card should display the Details page. If the currently logged-in user is the author of the ad, the Edit and Delete buttons should be displayed, otherwise they should not be available.
+
+Information about the ad:
+
+- Author
+- Headline
+- Company name
+- Company description
+- Location
+- Buttons (Depending on the status of the currently logged in user)
