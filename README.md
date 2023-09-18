@@ -21,3 +21,16 @@ User navigation example:
   - Access ad details page [Details]
   - Applying for an ad (if the current user is not the author of the ad)
   - Delete or Edit ad depending on user's authentication (only for the author of the current ad)
+
+## Database Models
+
+The Database of the Job Ads application needs to support 2 entities. Note: You can add additional properties to the models if this will help you solve the task.
+
+### User
+
+- Email - string (required)
+- Password - string (required)
+- Description of skills - string (required)
+- My ads - a collection of Ads (a reference to the Ad Model)
+
+Note: When a user creates a new ad, a reference to that ad is added to that collection (My ads).
