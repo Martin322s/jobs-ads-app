@@ -34,3 +34,14 @@ The Database of the Job Ads application needs to support 2 entities. Note: You c
 - My ads - a collection of Ads (a reference to the Ad Model)
 
 Note: When a user creates a new ad, a reference to that ad is added to that collection (My ads).
+
+### Ad
+
+- Headline - string (required)
+- Location - string (required)
+- Company name - string (required)
+- Company description - string (required)
+- Author - object Id (a reference to the User model)
+- Users applied - a collection of Users (a reference to the User model)
+
+Note: When a user applies for an ad, their id is added to this collection (Users applied).
