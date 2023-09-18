@@ -142,3 +142,22 @@ Every author should be able to click over the [Delete] button - deleting the cur
 
 The Edit page is available to logged-in users and it allows authors to edit their ads. Clicking the [Edit] button of a particular ad on the Details page should display the Edit page, with all fields filled with the data for the ad. It contains a form with input fields for all relevant properties. Upon success, redirect the user to the Details page for the current ad.
 
+## Security Requirements (Routes Guards)
+
+The Security Requirements are mainly access requirements. Configurations about which users can access specific functionalities and pages.
+
+- Guest (not logged in) users can access the Home Page.
+- Guest (not logged in) users can access the Login page and functionality.
+- Guest (not logged in) users can access the Register page and functionality.
+- Guest (not logged in) and Users (logged in) can access the All ads page.
+- Guest (not logged in) can access the Details page without functionality.
+- Users (logged in) can access Home Page.
+- Users (logged in) can access the Details page and functionality.
+- Users (logged in) can access Create Ad page and functionality.
+- Users (logged in and not authors of the current ad) can access Apply for ad functionality.
+- Users (logged in and author of the current ad can access the Delete and Edit ad functionality.
+- Users (logged in) can access Logout functionality.
+
+If Guests (not logged in) try to access a page they should not be able to, you must redirect them to the Login page.
+
+If Users (logged in) try to access a page they should not be able to, you must redirect them to the Home Page.
