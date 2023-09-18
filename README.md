@@ -129,3 +129,16 @@ If the user applies successfully, the userId of the user must be added to the co
 If a user has applied for a current job ad, he should see the paragraph "You have already applied!".
 
 If the user has successfully applied, do not forget to update the value total number of candidates (inside the span tag) on the Home page (as you will need to visualize the three first added ads).
+
+### Create Ad Page (logged in user)
+
+The Create page is available to logged-in users. It contains a form for adding a new job ad. Upon success, redirect the user to the All ads page.
+
+### Delete Ad (logged in user and author of the current ad)
+
+Every author should be able to click over the [Delete] button - deleting the current ad from the database and the user should be redirected to the All ads page.
+
+### Edit Ad (logged in user and author of the current ad)
+
+The Edit page is available to logged-in users and it allows authors to edit their ads. Clicking the [Edit] button of a particular ad on the Details page should display the Edit page, with all fields filled with the data for the ad. It contains a form with input fields for all relevant properties. Upon success, redirect the user to the Details page for the current ad.
+
