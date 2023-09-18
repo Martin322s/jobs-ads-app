@@ -178,3 +178,12 @@ You should make the following validations:
 - The password should be at least 5 characters long
 - The repeat password should be equal to the password
 - The description of skills should be a maximum of 40 characters long
+
+### Ad
+
+You should make the following validations while creating and editing ad:
+
+- The Headline should be a minimum of 4 characters long
+- The Location should be a minimum of 8 characters long
+- The Company name should be at least 3 characters
+- The Company description should be a maximum of 40 characters long
