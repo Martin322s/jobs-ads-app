@@ -161,3 +161,20 @@ The Security Requirements are mainly access requirements. Configurations about w
 If Guests (not logged in) try to access a page they should not be able to, you must redirect them to the Login page.
 
 If Users (logged in) try to access a page they should not be able to, you must redirect them to the Home Page.
+
+# Validation and Error Handling
+
+The application should notify the users about the result of their actions. In case of error, you should display div with class "error-box". You can choose to display the first error or all of them. You have complete freedom to choose the content of the error message you will display.
+
+### Login / Register
+
+You should make the following validations:
+
+- The email should be in the following format: `<name>@<domain>.<extension>`
+  - Only English letters are allowed for any of the parts of the email
+  - There must be a @ after the <name>
+  - There must be a point(.) after the <domain>
+  - Example of a valid email - "petar@softuni.bg"
+- The password should be at least 5 characters long
+- The repeat password should be equal to the password
+- The description of skills should be a maximum of 40 characters long
