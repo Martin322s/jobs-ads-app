@@ -45,3 +45,11 @@ Note: When a user creates a new ad, a reference to that ad is added to that coll
 - Users applied - a collection of Users (a reference to the User model)
 
 Note: When a user applies for an ad, their id is added to this collection (Users applied).
+
+## Application Pages
+
+### Home Page (for logged in users and logged-out users)
+
+Show the first three added job ads. Each ad must show information about the headline, and the total number of candidates.
+
+If there are still no job ads, display "No ads created!"
