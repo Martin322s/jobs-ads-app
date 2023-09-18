@@ -119,3 +119,13 @@ If the currently logged-in user is not the author (the user that is not the crea
 ### Details Page (logged in and has already applied for a current ad)
 
 If the currently logged-in user is not the author and has already applied for a current ad, he should see the paragraph [You have already applied!].
+
+### Apply for a job ad (logged in user who is not the author of the ad)
+
+Any registered user who is not the author of the job ad must be able to apply (if they have not already applied).
+
+If the user applies successfully, the userId of the user must be added to the collection of Users applied. Then redirect the user to the Details page for the current job ad.
+
+If a user has applied for a current job ad, he should see the paragraph "You have already applied!".
+
+If the user has successfully applied, do not forget to update the value total number of candidates (inside the span tag) on the Home page (as you will need to visualize the three first added ads).
